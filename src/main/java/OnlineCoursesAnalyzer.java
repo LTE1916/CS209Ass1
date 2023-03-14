@@ -49,7 +49,6 @@ public class OnlineCoursesAnalyzer {
     public Map<String, Integer> getPtcpCountByInst() {
         Map<String, Integer> m= courses.stream().collect(Collectors.groupingBy(course -> course.institution,
                 Collectors.summingInt(c->c.participants)));
-      //  Map<String, Integer> map= courses.stream().collect(Collectors.toMap(course -> course.institution,course -> course.participants));
         return m;
     }
 
@@ -59,15 +58,87 @@ public class OnlineCoursesAnalyzer {
                 Collectors.summingInt(c->c.participants)));
         map=map.entrySet().stream().sorted(Map.Entry.comparingByValue((o1, o2) -> o2 - o1)).
                 collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
-        
-//        List<Map.Entry<String, Integer>> list = new ArrayList<Map.Entry<String, Integer>>(map.entrySet()); //转换为list
-//        list.sort((o1, o2) -> o2.getValue().compareTo(o1.getValue()));
         return map;
     }
 
     //3
     public Map<String, List<List<String>>> getCourseListOfInstructor() {
-        return null;
+        Map<String, List<List<String>>>map=new HashMap<>();
+        for (int i = 0; i < courses.size(); i++) {
+            String instructor=courses.get(i).instructors;
+            Course course=courses.get(i);
+            List<String>list0=new ArrayList<>();
+            List<String>list1=new ArrayList<>();
+            List<List<String>> list = new ArrayList<>();
+            list.add(list0);
+            list.add(list1);
+            
+            if(!instructor.contains(",")){
+                // 1 teacher
+
+                if(!map.containsKey(instructor)){
+                    if(!list.get(0).contains(course.title)){
+                    list.get(0).add(course.title);
+                    }
+                    map.put(instructor,list);
+                }else {
+                    if(!map.get(instructor).get(0).contains(course.title)){ map.get(instructor).get(0).add(course.title);}
+                }
+            }else { // many teachers:
+                String[]strings=instructor.split(",");
+                for (int j = 0; j < strings.length; j++) {
+
+                    if(strings[j].charAt(0)==' '){
+                        strings[j]=strings[j].substring(1);
+                    }
+                    if(!map.containsKey(strings[j])){
+                        if(!list.get(1).contains(course.title)) {
+                            list.get(1).add(course.title);
+                        }
+                        map.put(strings[j], list);
+                    List<String>list3=new ArrayList<>();
+                    List<String>list4=new ArrayList<>();
+                    list = new ArrayList<>();
+                    list.add(list3);
+                    list.add(list4);//initial list again
+                    }else {
+                        if (!map.get(strings[j]).get(1).contains(course.title)) {
+                            map.get(strings[j]).get(1).add(course.title);
+                        }
+                    }
+                }
+            }
+//               if(!map.containsKey(instructor)) {
+//                   if(instructor.contains(",")){
+//                      String[]arr= instructor.split(",");
+//                       for (int j = 0; j < arr.length; j++) {
+//                           list.get(1).add(courses.get(i).title);
+//                       }
+//
+//                   }else{
+//                       list.get(0).add(courses.get(i).title);
+//                   }
+//                   map.put(instructor,list);
+//               }else {
+//                   if(instructor.contains(",")){
+//                       list.get(1).add(courses.get(i).title);
+//                   }else{
+//                       list.get(0).add(courses.get(i).title);
+//                   }
+//               }
+        }
+        Map<String, List<List<String>>>m=new HashMap<>();
+       map.forEach((s, lists) -> {
+           List<String> list0=lists.get(0).stream().sorted().toList();
+           List<String> list1= lists.get(1).stream().sorted().toList();
+//            lists.get(0).stream().sorted().toList();
+//            lists.get(1).stream().sorted().toList();
+           List<List<String>> list = new ArrayList<>();
+           list.add(list0);
+           list.add(list1);
+           m.put(s,list);
+        });
+        return m;
     }
 
     //4
