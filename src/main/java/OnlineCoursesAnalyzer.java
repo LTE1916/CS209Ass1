@@ -3,6 +3,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+import java.util.function.Predicate;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -31,6 +34,7 @@ public class OnlineCoursesAnalyzer {
                         Double.parseDouble(info[18]), Double.parseDouble(info[19]), Double.parseDouble(info[20]),
                         Double.parseDouble(info[21]), Double.parseDouble(info[22]));
                 courses.add(course);
+                
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -143,12 +147,48 @@ public class OnlineCoursesAnalyzer {
 
     //4
     public List<String> getCourses(int topK, String by) {
-        return null;
+        List<String> ans = new ArrayList<>();
+        switch (by){
+            case("participants"): {
+                ans = courses.stream().sorted(new Comparator<Course>() {
+                    @Override
+                    public int compare(Course o1, Course o2) {
+                        return o2.participants - o1.participants;
+                    }
+                }).distinct().limit(topK).map(course -> course.title).collect(Collectors.toList());
+                break;
+            }
+            case("hours"):{
+                ans = courses.stream().sorted(Comparator.comparingDouble(Course::getTotalHours).reversed())
+                        .distinct().limit(topK).map(course -> course.title).collect(Collectors.toList());
+                break;
+            }
+        }
+        return ans;
     }
-
-    //5
+    
     public List<String> searchCourses(String courseSubject, double percentAudited, double totalCourseHours) {
-        return null;
+        Pattern pattern = Pattern.compile(courseSubject,Pattern.CASE_INSENSITIVE);
+       return courses.stream()
+               .filter(new Predicate<Course>() {
+            @Override
+            public boolean test(Course course) {
+                return pattern.matcher(course.subject).find();
+            }
+        })
+                .filter(new Predicate<Course>() {
+            @Override
+            public boolean test(Course course) {
+                return course.percentAudited>=percentAudited;
+            }
+        })
+                .filter(new Predicate<Course>() {
+            @Override
+            public boolean test(Course course) {
+                return course.totalHours<=totalCourseHours;
+            }
+        }).distinct()
+               .map(course -> course.title).sorted().collect(Collectors.toList());
     }
 
     //6
@@ -222,7 +262,20 @@ class Course {
         this.percentFemale = percentFemale;
         this.percentDegree = percentDegree;
     }
-    public String getInstitution(){
-        return this.institution;
+    @Override
+    public boolean equals(Object o) {
+        return this.title.equals(((Course) o).title);
+    }
+    @Override
+    public int hashCode() {
+        return 17*title.hashCode();
+    }
+    
+    public double getTotalHours(){
+        return this.totalHours;
+    }
+    
+    public int getParticipants(){
+        return this.participants;
     }
 }

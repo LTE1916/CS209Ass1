@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b387b0ce-0633-4050-a402-0745866a8e58" name="变更" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+    <list default="true" id="b387b0ce-0633-4050-a402-0745866a8e58" name="变更" comment="passed Q3&#10;3 left to deal with">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/OnlineCoursesAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/OnlineCoursesAnalyzer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,6 +14,12 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
@@ -36,6 +41,12 @@
     &quot;project.structure.last.edited&quot;: &quot;模块&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;ChangesTree.GroupingKeys&quot;: [
+      &quot;module&quot;,
+      &quot;directory&quot;
+    ]
   }
 }</component>
   <component name="RecentsManager">
@@ -47,7 +58,7 @@
       <recent name="D:\CS209\Ass1\src\main\src" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.LocalAnalyzerTest">
     <configuration name="LocalAnalyzerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Ass1" />
       <option name="PACKAGE_NAME" value="" />
@@ -57,9 +68,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="LocalAnalyzerTest.testGetCourses" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Ass1" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="LocalAnalyzerTest" />
+      <option name="METHOD_NAME" value="testGetCourses" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.LocalAnalyzerTest" />
+        <item itemvalue="JUnit.LocalAnalyzerTest.testGetCourses" />
       </list>
     </recent_temporary>
   </component>
@@ -74,8 +96,26 @@
       <workItem from="1678716844217" duration="838000" />
       <workItem from="1678771785350" duration="29000" />
       <workItem from="1678787052737" duration="2738000" />
-      <workItem from="1678791722447" duration="4035000" />
+      <workItem from="1678791722447" duration="15816000" />
+      <workItem from="1678852221772" duration="695000" />
+      <workItem from="1678860177491" duration="612000" />
+      <workItem from="1678862376760" duration="9677000" />
     </task>
+    <task id="LOCAL-00001" summary="passed 2 local test&#10;4 left to deal with">
+      <created>1678796074103</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1678796074103</updated>
+    </task>
+    <task id="LOCAL-00002" summary="passed Q3&#10;3 left to deal with">
+      <created>1678808094537</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1678808094537</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -92,23 +132,25 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial commit&#10;qwrq" />
+    <MESSAGE value="passed 2 local test&#10;4 left to deal with" />
+    <MESSAGE value="passed Q3&#10;3 left to deal with" />
+    <option name="LAST_COMMIT_MESSAGE" value="passed Q3&#10;3 left to deal with" />
+  </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/OnlineCoursesAnalyzer.java</url>
-          <line>51</line>
-          <properties>
-            <option name="lambda-ordinal" value="-1" />
-          </properties>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="java.util.HashMap$EntrySet" memberName="this$0" />
+        <PinnedItemInfo parentTag="OnlineCoursesAnalyzer" memberName="courses" />
       </pinned-members>
     </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="JUnit">
+        <watch expression="((Object[])((ArrayList)((OnlineCoursesAnalyzer)this).courses).elementData)[39]" custom="java.lang.Object[],OnlineCoursesAnalyzer,java.util.ArrayList" />
+        <watch expression="((Object[])((ArrayList)((OnlineCoursesAnalyzer)this).courses).elementData)[238]" custom="java.lang.Object[],OnlineCoursesAnalyzer,java.util.ArrayList" />
+        <watch expression="this.institution" custom="Course" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
